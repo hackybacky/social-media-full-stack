@@ -2,7 +2,7 @@ import './rightbar.css'
 import React from 'react';
 import { Users } from '../../dummyData';
 import Online from '../online/Online';
-export default function Rightbar({ profile }) {
+export default function Rightbar({ user }) {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const HomeRightbar = () => {
         return (
@@ -32,20 +32,17 @@ export default function Rightbar({ profile }) {
                 <div className="rightbarInfo">
                     <div className="rightbarInfoItem">
                         <span className="rightbarInfokey">city</span>
-                        <span className="rightbarInfoValue">New york</span>
+                        <span className="rightbarInfoValue">{user.city}</span>
                     </div>
                     <div className="rightbarInfoItem">
                         <span className="rightbarInfokey">From</span>
-                        <span className="rightbarInfoValue"> Real Madrid </span>
+                        <span className="rightbarInfoValue"> {user.from} </span>
                     </div>
                     <div className="rightbarInfoItem">
                         <span className="rightbarInfokey"> Relationship </span>
-                        <span className="rightbarInfoValue"> Single </span>
+                        <span className="rightbarInfoValue"> {user.relationship===1?"single":user.relationship===2?"married":"complicated"} </span>
                     </div>
-                    <div className="rightbarInfoItem">
-                        <span className="rightbarInfokey">city</span>
-                        <span className="rightbarInfoValue">New york</span>
-                    </div>
+                    
                 </div>
                 <h4 className="rightbarTitle"> user friends </h4>
                 <div className="rightbarFollowings">
@@ -61,7 +58,7 @@ export default function Rightbar({ profile }) {
     return (
         <div className='rightbar'>
             <div className="rightbarWrapper">
-                {profile ? <ProfileRightbar />:<HomeRightbar/> }
+                {user ? <ProfileRightbar />:<HomeRightbar/> }
             </div>
         </div>
     )
