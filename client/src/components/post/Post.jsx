@@ -4,15 +4,25 @@ import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import axios from 'axios'
 import { format } from "timeago.js"
+import {useContext} from 'react'
+import { AuthContext } from "../../context/AuthContext";
 
 export default function Post({ post }) {
   const [like, setLike] = useState(post.likes.length)
   const [isLiked, setIsLiked] = useState(false)
   const [user, setUser] = useState({})
-
+  const {user:currentUser} = useContext(AuthContext)
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
-  const likeHandler = () => {
+  useEffect(() => {
+    setIsLiked(post.likes.includes(currentUser._id))
+  },[post.likes,currentUser._id])
+  const likeHandler =  () => {
+    try {
+        axios.put('/posts/'+post._id+'/like',{userId:currentUser._id})
+    } catch (err) {
+      console.log(err);
+    }
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked)
   }
@@ -37,7 +47,7 @@ export default function Post({ post }) {
             <Link to={`/profile/${user.username}`}>
               <img
                 className="postProfileImg"
-                src={user.profilePicture || PF + 'person/no_avatar.jpg'}
+                src={user.profilePicture?PF+user.profilePicture : PF + 'person/no_avatar.jpg'}
                 alt=""
               />
             </Link>

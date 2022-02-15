@@ -12,7 +12,7 @@ export default function Login() {
         e.preventDefault();
         loginCall({ email: email.current.value, password: password.current.value }, dispatch);
     }
-    console.log(user);
+    
     return (
         <div className="login">
             <div className="loginWrapper">
@@ -26,9 +26,12 @@ export default function Login() {
                     <form className="loginBox" onSubmit={handleClick}>
                         <input placeholder='Email' type='email' required className='loginInput' ref={email} />
                         <input placeholder='Password' type='password' required minLength="6" className="loginInput" ref={password} />
-                        <button className='loginButton'> {isFetching ? <CircularProgress color="white" size="25px"/> : "Log in"} </button>
+                        <button className='loginButton' disabled={isFetching}> {isFetching ? <CircularProgress 
+                            color="primary" size="25px" /> : "Log in"} </button>
                         <span className="loginForgot"> Forgot login details</span>
-                        <button className="loginRegisterButton">Create new account </button>
+                        <button className="loginRegisterButton">
+                            {isFetching ? <CircularProgress color="primary" size="25px" /> : "Create account"}
+                        </button>
                     </form>
                 </div>
             </div>
