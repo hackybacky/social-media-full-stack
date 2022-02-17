@@ -1,14 +1,14 @@
 const router = require("express").Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+
+
+
 router.post('/register', async (req, res) => {
     
     
     try {
         ///hashing password
-
-       
-
        
         const Username = req.body.username;
         const Email = req.body.email;
