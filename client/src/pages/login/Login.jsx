@@ -11,6 +11,7 @@ export default function Login() {
     const handleClick = (e) => {
         e.preventDefault();
         loginCall({ email: email.current.value, password: password.current.value }, dispatch);
+        
     }
     
     return (

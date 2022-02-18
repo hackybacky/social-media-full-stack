@@ -111,3 +111,21 @@
     object-fit: cover;
     border-radius: 5px;
 }
+
+.rightbarFollowingButton{
+    margin-top: 30px;
+    margin-bottom: 10px;
+    border:none;
+    background-color: lightgrey;
+    color:white;
+    padding:5px 10px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+.rightbarFollowingButton:focus{
+    outline:none;
+}

@@ -5,14 +5,37 @@ import Online from '../online/Online';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from "axios"
+import { AuthContext } from '../../context/AuthContext';
+import { useContext } from 'react';
+import {Add, Remove } from '@material-ui/icons'
 export default function Rightbar({ user }) {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const [friends, setFriends] = useState([])
-    
-    
+    const [followed, setFollowed] = useState(false)
+    const { user: currentUser } = useContext(AuthContext)
+    useEffect(() => {
+        setFollowed(currentUser.following.includes(user?.id));
+    }, [currentUser, user?.id]);
+    const handleClick = async () => {
+        
+        //try {
+            // if (followed) {
+            //     console.log("clicked")
+            //     await axios.put("/users/" + user._id + "/follow",{userId:currentUser._id});
+            // }
+            // else {
+            //     console.log("unclicked")
+            //     await axios.put("/users/" + user._id + "/unfollow", { userId: currentUser._id });
+            // }
+        // } catch (err) {
+        //     console.log(err);
+        // }
+        // setFollowed(!followed)
+    }
     const HomeRightbar = () => {
         return (
-            <>
+            <>  
+                
                 <div className="birthdayContainer">
 
                     <img className='birthdayImg' src="assets/posts/mypost.jpg" />
@@ -31,21 +54,30 @@ export default function Rightbar({ user }) {
             </>
         )
     }
-    const ProfileRightbar = () => {
-        useEffect(() => {
-            const getFriends = async () => {
-                try {
-                    const friendList = await axios.get("/users/friends/" + user._id);
-                    setFriends(friendList.data);
-                } catch (err) {
-                    console.log(err);
-                }
+    useEffect(() => {
+        const getFriends = async () => {
+            try {
+                const friendList = await axios.get("/users/friends/" + user._id);
+                setFriends(friendList.data);
+            } catch (err) {
+                console.log(err);
             }
-            getFriends();
-            console.log(friends);
-        }, [user._id])
+        }
+        getFriends();
+        
+    }, [user])
+    const ProfileRightbar = () => {
+        
         return (
-            <>
+            <>  
+                {
+                    user.username !== currentUser.username && (
+                        <button className='rightbarFollowingButton' onClick={handleClick}>
+                            {followed ? "unfollow" : "follow"}
+                            {followed?<Remove/>:<Add/>}
+                        </button>
+                    )
+                }
                 <h4 className="rightbarTitle">user information</h4>
                 <div className="rightbarInfo">
                     <div className="rightbarInfoItem">
