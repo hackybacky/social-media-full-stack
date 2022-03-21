@@ -17,14 +17,16 @@ export default function Post({ post }) {
   useEffect(() => {
     setIsLiked(post.likes.includes(currentUser._id))
   },[post.likes,currentUser._id])
-  const likeHandler =  () => {
+  const likeHandler = async () => {
     try {
-        axios.put('/posts/'+post._id+'/like',{userId:currentUser._id})
+      const { data }=await axios.put('/posts/' + post._id + '/like', { userId: currentUser._id })
+      console.log( data );
+      setLike(isLiked ? like - 1 : like + 1);
+      setIsLiked(!isLiked)
     } catch (err) {
       console.log(err);
     }
-    setLike(isLiked ? like - 1 : like + 1);
-    setIsLiked(!isLiked)
+    
   }
 
   const [posts, setPosts] = useState([])

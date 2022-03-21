@@ -135,7 +135,7 @@ router.put('/:id/follow', async (req, res) => {
         }
     }
     else {
-        res.status(500).json("you can not follow yourself")
+        res.status(400).json("you can not follow yourself")
     }
 });
 
@@ -176,5 +176,8 @@ router.put('/:id/unfollow', async (req, res) => {
         res.status(500).json("you can not unfollow yourself")
     }
 });
+
+
+
 
 module.exports = router

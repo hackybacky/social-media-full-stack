@@ -32,7 +32,7 @@ export default function Feed({username}) {
             <div className="feedWrapper">
                 
 
-                {user.username===username && <Share />}
+                {username?user.username===username && <Share />:<Share/>}
                 {
                     posts.map((p) => (
                         <Post key={p._id} post={p} />
