@@ -2,7 +2,7 @@ import React from "react";
 import Topbar from "../../components/topbar/Topbar";
 import "./messenger.css";
 import Conversation from "../../components/conversations/Conversation";
-
+import Message from "../../components/message/Message";
 export default function Messenger() {
   return (
     <>
@@ -20,7 +20,12 @@ export default function Messenger() {
           </div>
           <div className="chatBox">
               <div className="chatBoxWrapper">
-                  <div className="chatBoxTop"></div>
+                  <div className="chatBoxTop">
+                    <Message/>
+                    <Message/>
+                    <Message/>
+                    <Message/>
+                  </div>
                   <div className="chatBoxBottom"></div>
               </div>
           </div>
