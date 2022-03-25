@@ -22,4 +22,19 @@
     background-color: #1877f2;
     color: white;
     max-width: 300px;
+    word-wrap: break-word
+}
+
+.messageBottom{
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+.message.own{
+    align-items: flex-end;
+}
+
+.message.own .messageText{
+    background-color: rgb(238, 232, 232);
+    color:black
 }

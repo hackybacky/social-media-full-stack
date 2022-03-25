@@ -22,11 +22,14 @@ export default function Messenger() {
               <div className="chatBoxWrapper">
                   <div className="chatBoxTop">
                     <Message/>
+                    {/* <Message own={true}/> */}
                     <Message/>
-                    <Message/>
-                    <Message/>
+                   
                   </div>
-                  <div className="chatBoxBottom"></div>
+                  <div className="chatBoxBottom">
+                      <textarea name="" id="" cols="30" rows="10" placeholder="write something" className="chatMessageInput"></textarea>
+                      <button className="chatSubmitbutton">send</button>
+                  </div>
               </div>
           </div>
           <div className="chatOnline">
