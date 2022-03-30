@@ -3,4 +3,28 @@
     align-items: center;
     font-weight: 500;
     cursor:pointer;
+    margin-top: 10px;
+}
+
+.chatOnlineImg{
+    height: 40px;
+    width:40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+    border :3px solid green;
+}
+.chatOnlineImgContainer{
+    position: relative;
+
+}
+
+.chatOnlineBadge{
+    position: absolute;
+    height: 10px;
+    width :10px;
+    border-radius: 50%;;
+    background-color: limegreen;
+    top:3px;
+    right: 6px;
 }

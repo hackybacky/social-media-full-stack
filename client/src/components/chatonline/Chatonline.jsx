@@ -5,7 +5,7 @@ export default function Chatonline() {
     <div className="chatOnline">
       <div className="chatOnlineFriend">
         <div className="chatOnlineImgContainer">
-          <img src="https://static.onecms.io/wp-content/uploads/sites/6/2020/05/07/MSDVAGI_OR006.jpg" alt="" className="chatOnlineImg" />
+          <img className="chatOnlineImg" src="https://static.onecms.io/wp-content/uploads/sites/6/2020/05/07/MSDVAGI_OR006.jpg" alt="" className="chatOnlineImg" />
           <div className="chatOnlineBadge"></div>
         </div>
         <div className="chatOnlineName">

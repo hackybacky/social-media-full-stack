@@ -7,6 +7,8 @@ const app = express();
 const userRouter = require("./routes/users")
 const userAuth = require("./routes/auth")
 const userPost = require("./routes/posts")
+const userConversations = require('./routes/conversations')
+const userMessages =require('./routes/messages')
 const multer = require('multer')
 const path = require("path");
 //user to hide important keys
@@ -46,6 +48,8 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 app.use("/api/users", userRouter);
 app.use("/api/auth", userAuth);
 app.use("/api/posts", userPost)
+app.use("/api/conversations",userConversations);
+app.use("/api/messages",userMessages)
 //listening port 8800
 
 app.listen(8800, () => {

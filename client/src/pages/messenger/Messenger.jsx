@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Topbar from "../../components/topbar/Topbar";
 import "./messenger.css";
 import Conversation from "../../components/conversations/Conversation";
 import Message from "../../components/message/Message";
 import Chatonline from "../../components/chatonline/Chatonline";
+import { AuthContext } from "../../context/AuthContext";
+import { useContext } from "react";
+import axios from "axios";
 export default function Messenger() {
+  const { user } = useContext(AuthContext);
+  const [conversations, setConversations] = useState([]);
+  useEffect(() => {
+    const getConversations = async () => {
+      try {
+        const res = await axios.get(`/conversations/${user._id}`);
+        console.log("hello");
+        console.log(res);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getConversations();
+  });
   return (
     <>
       <Topbar />
@@ -32,7 +49,7 @@ export default function Messenger() {
               <Message />
               <Message />
               <Message />
-              <Message />
+              <Message own={true} />
             </div>
             <div className="chatBoxBottom">
               <textarea
@@ -45,6 +62,11 @@ export default function Messenger() {
         </div>
         <div className="chatOnline">
           <div className="chatOnlineWrapper">
+            <Chatonline />
+            <Chatonline />
+            <Chatonline />
+            <Chatonline />
+            <Chatonline />
             <Chatonline />
           </div>
         </div>
