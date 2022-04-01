@@ -93,3 +93,12 @@
     flex: 1px;
   }
 }
+
+.noConversationText{
+  position: absolute;
+  top:10%;
+  font-size: 50px;
+  color:gray;
+  text-align: center;
+  cursor:default;
+}
