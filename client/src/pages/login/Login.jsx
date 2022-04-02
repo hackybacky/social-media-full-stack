@@ -4,8 +4,10 @@ import { useRef, useContext } from 'react';
 import { loginCall } from '../../apiCalls';
 import { AuthContext } from '../../context/AuthContext';
 import {CircularProgress} from '@material-ui/core'
+import { useNavigate } from 'react-router-dom';
 export default function Login() {
     const email = useRef();
+    const navigate=useNavigate();
     const password = useRef();
     const { user, isFetching, error, dispatch } = useContext(AuthContext);
     const handleClick = (e) => {
@@ -13,12 +15,16 @@ export default function Login() {
         loginCall({ email: email.current.value, password: password.current.value }, dispatch);
         
     }
+
+    const handleRegisterClick=()=>{
+        navigate('/register');
+    }
     
     return (
         <div className="login">
             <div className="loginWrapper">
                 <div className="loginLeft">
-                    <h3 className="loginLogo">Login compete</h3>
+                    <h3 className="loginLogo">Login karo </h3>
                     <span className="loginDesc">
                         connect with your favourite competetive coders
                     </span>
@@ -30,10 +36,10 @@ export default function Login() {
                         <button className='loginButton' disabled={isFetching}> {isFetching ? <CircularProgress 
                             color="primary" size="25px" /> : "Log in"} </button>
                         <span className="loginForgot"> Forgot login details</span>
-                        <button className="loginRegisterButton">
+                    </form>
+                        <button className="loginRegisterButton" onClick={handleRegisterClick}>
                             {isFetching ? <CircularProgress color="primary" size="25px" /> : "Create account"}
                         </button>
-                    </form>
                 </div>
             </div>
         </div>

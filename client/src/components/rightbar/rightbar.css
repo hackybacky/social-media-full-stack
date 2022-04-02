@@ -129,3 +129,17 @@
 .rightbarFollowingButton:focus{
     outline:none;
 }
+
+.logoutButton{
+    width: 80px;
+    height:50px;
+    
+    border-radius: 20px;
+
+    
+}
+
+.logoutButton:hover{
+    background-color: #00BFFF;
+    color:white;
+}

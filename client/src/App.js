@@ -4,6 +4,7 @@ import Profile from "./pages/profile/Profile";
 import Register from "./pages/register/Register";
 import SearchUser from "./pages/search/searchUser";
 import Messenger from "./pages/messenger/Messenger";
+import 'bootstrap/dist/css/bootstrap.min.css'
 import {
   BrowserRouter as Router,
 
@@ -29,7 +30,7 @@ function App() {
         <Route path='/' element={user ? <Home /> : <Register />} />
         <Route path='/login' element={user ? <Navigate to="/" /> : <Login />} />
         <Route path='/register' element={user ? <Navigate to="/" /> : <Register />} />
-        <Route path='/profile/:username' element={<Profile />} />
+        <Route path='/profile/:username' element={user?<Profile />:<Navigate to="/login"/>} />
         <Route path='/search/:username' element={<SearchUser />} />
         <Route path='/messenger' element={user ? <Messenger/> : <Register />} />
       </Routes>

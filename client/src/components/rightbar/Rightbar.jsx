@@ -7,12 +7,14 @@ import { useState, useEffect } from 'react';
 import axios from "axios"
 import { AuthContext } from '../../context/AuthContext';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Add, Remove } from '@material-ui/icons'
 export default function Rightbar({ user }) {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const [friends, setFriends] = useState([])
     const { user: currentUser,dispatch } = useContext(AuthContext)
     const [followed, setFollowed] = useState(currentUser.following.includes(user?._id));
+    const navigate=useNavigate();
     useEffect(() => {
         console.log(user?._id)
         
@@ -70,6 +72,12 @@ export default function Rightbar({ user }) {
         getFriends();
 
     }, [user])
+    const logoutClick=()=>{
+        localStorage.clear();
+        window.location.reload();
+        
+        
+    }
     const ProfileRightbar = () => {
 
         return (
@@ -81,7 +89,16 @@ export default function Rightbar({ user }) {
                             {followed ? <Remove /> : <Add />}
                         </button>
                     )
+                    
                 }
+                {
+                    user.username===currentUser.username && (
+                        <button className='logoutButton' onClick={logoutClick} >
+                            <h3>Logout</h3>
+                        </button>
+                    )
+                }
+                
                 <h4 className="rightbarTitle">user information</h4>
                 <div className="rightbarInfo">
                     <div className="rightbarInfoItem">

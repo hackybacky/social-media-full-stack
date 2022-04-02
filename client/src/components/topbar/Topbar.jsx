@@ -6,7 +6,7 @@ import { AuthContext } from "../../context/AuthContext";
 
 import axios from "axios";
 //importing from material ui
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate,Navigate } from "react-router-dom";
 
 export default function Topbar() {
       
@@ -38,7 +38,10 @@ export default function Topbar() {
       e.target.value = "";
     }
   };
-
+  const chatClickHandler=()=>{
+    console.log("click");
+    navigate('/messenger');
+  }
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
@@ -68,8 +71,8 @@ export default function Topbar() {
             <Person />
             <span className="topbarIconBadge">1</span>
           </div>
-          <div className="topbarIconItem">
-            <Chat />
+          <div className="topbarIconItem"  onClick={chatClickHandler}>
+            <Chat/>
             <span className="topbarIconBadge">1</span>
           </div>
 
