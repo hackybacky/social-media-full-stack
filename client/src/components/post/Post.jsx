@@ -47,9 +47,14 @@ export default function Post({ post }) {
     console.log(post._id);
     console.log(currentUser._id);
     
+    try{
 
-    const res = await axios.delete(`/posts/${post._id}`);
-    console.log(res);
+      const res = await axios.delete(`/posts/${post._id}`,{data:{userId:currentUser._id}});
+      window.location.reload();
+      console.log(res);
+    }catch(err){
+
+    }
   }
 
   return (
@@ -75,7 +80,7 @@ export default function Post({ post }) {
           <div className="postTopRight">
             {/* <MoreVert /> */}
             <Dropdown>
-              <Dropdown.Toggle variant="success" id="dropdown-basic">
+              <Dropdown.Toggle variant="info" id="dropdown-basic">
                 :
               </Dropdown.Toggle>
 

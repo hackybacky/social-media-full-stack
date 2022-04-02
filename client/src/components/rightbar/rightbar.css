@@ -135,11 +135,42 @@
     height:50px;
     
     border-radius: 20px;
-
+    margin-right: 60px;
+    margin-bottom: 10px;
     
 }
 
 .logoutButton:hover{
     background-color: #00BFFF;
     color:white;
+}
+
+.profileUpdate{
+    display: flex;
+    
+}
+
+.hidden { display:none; }
+
+.shareInput {
+    border: none;
+    width: 80%;
+    
+  }
+  
+  .shareInput:focus {
+    outline: none;
+  }
+
+  .shareButton{
+    border: none;
+    
+    padding: 7px;
+    border-radius: 5px;
+    background-color: green;
+    font-weight: 500;
+    margin-right: 20px;
+    margin-left: 60px;
+    cursor: pointer;
+    color: white;
 }
