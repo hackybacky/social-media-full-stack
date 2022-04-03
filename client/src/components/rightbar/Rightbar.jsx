@@ -116,7 +116,7 @@ export default function Rightbar({ user }) {
       try {
        
         await axios.put("/users/"+currentUser._id, updatedUser);
-        
+        localStorage.clear();
         window.location.reload();
       } catch (err) {}
     

@@ -1,5 +1,6 @@
 const router = require("express").Router();
 
+const { createCipheriv } = require("crypto");
 const Conversation =require("../models/Conversation")
 
 // new conversation
@@ -28,6 +29,18 @@ router.get("/:userId",async (req,res)=>{
     }
 })
 
+
+router.get("/find/:firstUserId/:secondUserId",async(req,res)=>{
+    try{
+        const con = await Conversation.findOne({
+            members:{$all:[req.params.firstUserId,req.params.secondUserId]},
+        })
+        //console.log(con)
+        res.status(200).json(con);
+    }catch(err){
+        res.status(500).json(err);
+    }
+})
 
 
 module.exports = router;
