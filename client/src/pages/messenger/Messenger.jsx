@@ -72,37 +72,53 @@ export default function Messenger() {
     getMessages();
   }, [currentChat]);
 
+  function hasBlankSpaces(str){
+  //  var str = document.reg;
+    if (str.trim() == "") {
+        alert("Enter valid text");
+        str.focus();
+        return true
+    }
+    return false
+}
+
   const handleSubmit = async (e) => {
+
     e.preventDefault();
     const message = {
       sender: user._id,
       text: newMessage,
       conversationId: currentChat._id,
     };
-
-    const receiverId = currentChat.members.find(
-      (member) => member !== user._id
-    );
-
-    socket.current.emit("sendMessage", {
-      senderId: user._id,
-      receiverId,
-      text: newMessage,
-    });
-
-    try {
-      const res = await axios.post("/messages", message);
-      setMessages([...messages, res.data]);
-      setNewMessage("");
-    } catch (err) {
-      console.log(err);
+    console.log( hasBlankSpaces(message.text))
+    if(message.text!=="" || !hasBlankSpaces(message.text)){
+      const receiverId = currentChat.members.find(
+        (member) => member !== user._id
+      );
+  
+      socket.current.emit("sendMessage", {
+        senderId: user._id,
+        receiverId,
+        text: newMessage,
+      });
+  
+      try {
+        
+        const res = await axios.post("/messages", message);
+        setMessages([...messages, res.data]);
+        setNewMessage("");
+      } catch (err) {
+        console.log(err);
+      }
     }
+    
+
   };
 
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
-  
+  console.log(messages)
   return (
     <>
       <Topbar />
@@ -124,7 +140,8 @@ export default function Messenger() {
                 <div className="chatBoxTop">
                   {messages.map((m) => (
                     <div ref={scrollRef}>
-                      <Message message={m} own={m.sender === user._id} />
+                      
+                      <Message message={m} own={m.sender === user._id} user={m.sender===user._id?user._id:m.sender} />
                     </div>
                   ))}
                 </div>

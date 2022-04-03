@@ -54,9 +54,10 @@ export default function Rightbar({ user }) {
     return (
       <>
         <div className="birthdayContainer">
+          
           <img className="birthdayImg" src="assets/posts/mypost.jpg" />
           <span className="birthdayText">
-            <b>kumar </b> <b>shukla </b> have birthday today
+            
           </span>
         </div>
         <img src="assets/posts/mypost.jpg" alt="" className="rightbarAd" />
