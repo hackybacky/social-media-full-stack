@@ -52,6 +52,6 @@ app.use("/api/conversations",userConversations);
 app.use("/api/messages",userMessages)
 //listening port 8800
 
-app.listen(8800, () => {
+app.listen(process.env.PORT || 8800, () => {
     console.log("Running at 8800")
 })
