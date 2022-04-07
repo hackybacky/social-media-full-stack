@@ -78,8 +78,8 @@ export default function Topbar() {
           <img
             src={
               user.profilePicture
-                ? PF + user.profilePicture
-                : PF + "person/no_avatar.jpg"
+                ?  user.profilePicture
+                :"/assets/no_avatar.jpg"
             }
             alt=""
             className="topbarImg"

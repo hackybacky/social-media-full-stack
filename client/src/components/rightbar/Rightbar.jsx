@@ -104,12 +104,14 @@ export default function Rightbar({ user }) {
     if (file) {
       const data = new FormData();
       const fileName = Date.now() + file.name;
-      data.append("name", fileName);
+   //   data.append("name", fileName);
       data.append("file", file);
-      updatedUser.profilePicture = fileName;
+      data.append("upload_preset","qs5o3dd6")
+      
       
       try {
-        const res=await axios.post("/upload", data);
+        const res = await axios.post("https://api.cloudinary.com/v1_1/hareeshcloud/image/upload", data);
+        updatedUser.profilePicture=res.data.url;
         //console.log(res);
         } catch (err) { }
     }
@@ -211,8 +213,8 @@ export default function Rightbar({ user }) {
                 <img
                   src={
                     friend.profilePicture
-                      ? PF + friend.profilePicture
-                      : PF + "person/no_avatar.jpg"
+                      ?  friend.profilePicture
+                      :  "../person/no_avatar.jpg"
                   }
                   alt=""
                   className="rightbarFollowingImg"

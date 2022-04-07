@@ -18,13 +18,15 @@ export default function Share() {
         };
         if (file) {
             const data = new FormData();
-            const fileName = Date.now() + file.name;
-            data.append("name", fileName);
+           // const fileName = Date.now() + file.name;
+            //data.append("name", fileName);
             data.append("file", file);
-            newPost.img = fileName;
+            data.append("upload_preset","qs5o3dd6")
+          //  newPost.img = fileName;
             console.log(newPost);
             try {
-                await axios.post("/upload", data);
+               const res = await axios.post("https://api.cloudinary.com/v1_1/hareeshcloud/image/upload", data);
+               newPost.img=res.data.url;
             } catch (err) { }
         }
         try {
@@ -40,7 +42,7 @@ export default function Share() {
             <div className="shareWrapper">
                 <div className="shareTop">
                     <img className="shareProfileImg" src={
-                        user.profilePicture?PF+user.profilePicture:PF+'person/no_avatar.jpg'
+                        user.profilePicture?user.profilePicture:"/assets/no_avatar.jpg"
                     } alt="" />
                     <input
                         placeholder={"What's in your mind " + user.username + "?"}

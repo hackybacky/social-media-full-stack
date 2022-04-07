@@ -21,7 +21,7 @@ export default function Message({message,own,user}) {
   return (
     <div className={own?"message own":"message"}>
         <div className="messageTop">
-            <img src={currentSender?.profilePicture?PF+currentSender.profilePicture:PF+'/person/no_avatar.jpg'} alt="" className="messageImg" />
+            <img src={currentSender?.profilePicture?currentSender.profilePicture:"/assets/no_avatar.jpg"} alt="" className="messageImg" />
             <p className="messageText">{message.text}</p>
         </div>
         <div className="messageBottom">{format(message.createdAt)}</div>
